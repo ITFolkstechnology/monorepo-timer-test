@@ -28,6 +28,8 @@
   ],
   "packageManager": "yarn@3.4.1",
   "dependencies": {
+    "@tanstack/react-query": "^5.8.6",
+    "axios": "^1.6.2",
     "expo-dev-client": "~2.4.12"
   }
 }
