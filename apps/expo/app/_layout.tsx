@@ -7,7 +7,7 @@ export default function Root() {
   return (
     <Provider>
       <QueryClientProvider>
-        <Stack />
+        <Stack screenOptions={{ headerShown: false }} />
       </QueryClientProvider>
     </Provider>
   )
