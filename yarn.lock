@@ -2226,6 +2226,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/react@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@heroicons/react@npm:2.0.18"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 597e8668818623d568a302e343ef06b69f62ce297c14b88c2ebbfed0c0f00cd85ec44fae33ec8a249931b4e7dcf145743ae3198095a9f4682108de5155f5f4c3
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.8":
   version: 0.11.8
   resolution: "@humanwhocodes/config-array@npm:0.11.8"
@@ -3092,18 +3101,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.8.6":
-  version: 5.8.6
-  resolution: "@tanstack/query-core@npm:5.8.6"
-  checksum: 34682a46c4e607fee57b209c7ec0368c997e3aa2e8f11a1fec556914ad9d01ccfc7dc3956fcdb73218bb581e3261d1f19f4cdc0155e57bad9b36a9ac2faa801c
+"@tanstack/query-core@npm:5.8.7":
+  version: 5.8.7
+  resolution: "@tanstack/query-core@npm:5.8.7"
+  checksum: ed6c0966ab7593d6dd36e6663ca5d7f73049fb0df0f3f1a3a78539f06e7ab583a5b4104c454025e90fa4bd447d87b74518d03166e88ac4cfa6fca850a01cbf4f
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^5.8.6":
-  version: 5.8.6
-  resolution: "@tanstack/react-query@npm:5.8.6"
+"@tanstack/react-query@npm:^5.8.7":
+  version: 5.8.7
+  resolution: "@tanstack/react-query@npm:5.8.7"
   dependencies:
-    "@tanstack/query-core": 5.8.6
+    "@tanstack/query-core": 5.8.7
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
@@ -3113,7 +3122,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: af497f8e6483543ead437e6387e74b63ccfae35c0e74ba12e7bd9d1a390bb95d47efc0c59988984ae21e1cfa4a118974545e39010ead490c00d93ed4599be139
+  checksum: 033e50d4a521117a6268fed944adfc107010a58d0533551f85e6e4daf7cbcd6acd49da55ea7003bd8c86a4af0e9a11adcd327e562807b9fb3db664395a0bb2e6
   languageName: node
   linkType: hard
 
@@ -4884,7 +4893,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decode-uri-component@npm:^0.2.2":
+"decode-uri-component@npm:^0.2.0, decode-uri-component@npm:^0.2.2":
   version: 0.2.2
   resolution: "decode-uri-component@npm:0.2.2"
   checksum: 95476a7d28f267292ce745eac3524a9079058bbb35767b76e3ee87d42e34cd0275d2eb19d9d08c3e167f97556e8a2872747f5e65cbebcac8b0c98d83e285f139
@@ -5679,6 +5688,7 @@ __metadata:
   resolution: "expo-app@workspace:apps/expo"
   dependencies:
     "@babel/core": ^7.20.0
+    "@tanstack/react-query": ^5.8.7
     "@types/react": ^18.2.21
     "@types/react-native": ^0.72.2
     app: "*"
@@ -8691,6 +8701,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mitt@npm:1.1.3":
+  version: 1.1.3
+  resolution: "mitt@npm:1.1.3"
+  checksum: 856a786b3fd82aaf5bb46d9bcc13250f7ec682cc89a800ed718e8ca01a849a3dc5b84e5cbd874c7504745ea1c1f6789d7257892879ae242d0df70d3a17513f97
+  languageName: node
+  linkType: hard
+
 "mkdirp@npm:^0.5.1, mkdirp@npm:~0.5.1":
   version: 0.5.6
   resolution: "mkdirp@npm:0.5.6"
@@ -8839,6 +8856,7 @@ __metadata:
   resolution: "next-app@workspace:apps/next"
   dependencies:
     "@expo/next-adapter": 5.0.2
+    "@tanstack/react-query": ^5.8.7
     "@types/node": 17.0.21
     app: "*"
     autoprefixer: ^10.4.7
@@ -9982,6 +10000,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"query-string@npm:6.10.1":
+  version: 6.10.1
+  resolution: "query-string@npm:6.10.1"
+  dependencies:
+    decode-uri-component: ^0.2.0
+    split-on-first: ^1.0.0
+    strict-uri-encode: ^2.0.0
+  checksum: 93925c3ceade180cad70277cb0379c45fbac06b9f432593930352b3d15e39dbcb204f8fb2059daba87bd0798fb1071c5a59cd937f580a7cf8ecd29881103febe
+  languageName: node
+  linkType: hard
+
 "query-string@npm:7.1.3, query-string@npm:^7.1.3":
   version: 7.1.3
   resolution: "query-string@npm:7.1.3"
@@ -10141,6 +10170,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-flipper@npm:^0.164.0":
+  version: 0.164.0
+  resolution: "react-native-flipper@npm:0.164.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-native: ">0.62.0"
+  checksum: 8730d7349bec27a23558760320082bd89b07fb404a87bf039a8d852455f28e4d5419f093bb7900ff5f6d85488274cfb246278b6700878bcabe574d5aacd88dac
+  languageName: node
+  linkType: hard
+
 "react-native-gesture-handler@npm:~2.12.0":
   version: 2.12.1
   resolution: "react-native-gesture-handler@npm:2.12.1"
@@ -10293,6 +10332,31 @@ __metadata:
   dependencies:
     loose-envify: ^1.1.0
   checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
+  languageName: node
+  linkType: hard
+
+"reactotron-core-client@npm:2.8.10":
+  version: 2.8.10
+  resolution: "reactotron-core-client@npm:2.8.10"
+  checksum: 766d33d7a2956860b8b655113121bc7a0922ddcb33e76fb849d065fcfc2bbda2fadf8d8af7b32e6944a292526b24de7f6444e5e0eb5b49d431f02ddb3a088fd5
+  languageName: node
+  linkType: hard
+
+"reactotron-react-native@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "reactotron-react-native@npm:5.0.3"
+  dependencies:
+    mitt: 1.1.3
+    query-string: 6.10.1
+    react-native-flipper: ^0.164.0
+    reactotron-core-client: 2.8.10
+    rn-host-detect: 1.2.0
+  peerDependencies:
+    react-native: ">=0.40.0"
+  dependenciesMeta:
+    react-native-flipper:
+      optional: true
+  checksum: 7e1afe8dfdd909cd593dab40f43f944ad483906b8a7433dd7a9f4ad038d7b67d059d629030559b1c4f0cdbf6a1cee911d72b8f621014aa046abe752ede9bfcad
   languageName: node
   linkType: hard
 
@@ -10653,6 +10717,13 @@ __metadata:
   bin:
     rimraf: ./bin.js
   checksum: 3ea587b981a19016297edb96d1ffe48af7e6af69660e3b371dbfc73722a73a0b0e9be5c88089fbeeb866c389c1098e07f64929c7414290504b855f54f901ab10
+  languageName: node
+  linkType: hard
+
+"rn-host-detect@npm:1.2.0":
+  version: 1.2.0
+  resolution: "rn-host-detect@npm:1.2.0"
+  checksum: 447b06d6726b665d9d7933b5da96232aad6ee01d1c8287e7b67e9ed1d07cde437127aaa4cf2f51ee2dfb4bb0f0cb398d2676220a392d990e99f6f2aefcc5f5b0
   languageName: node
   linkType: hard
 
@@ -11035,7 +11106,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "solito-with-tailwind@workspace:."
   dependencies:
-    "@tanstack/react-query": ^5.8.6
+    "@heroicons/react": ^2.0.18
+    "@tanstack/react-query": ^5.8.7
     "@types/react": ^18.2.21
     "@types/react-native": ^0.72.2
     axios: ^1.6.2
@@ -11043,6 +11115,7 @@ __metadata:
     expo-dev-client: ~2.4.12
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.5.4
+    reactotron-react-native: ^5.0.3
     turbo: ^1.4.2
     typescript: ^5.2.2
   languageName: unknown
