@@ -1,14 +1,16 @@
-import { Provider } from 'app/provider'
-import QueryClientProvider from 'app/provider/query-client-provider'
+import { Provider, QueryProvider } from 'app/provider'
+import reactotron from "config/reactotron"
 import { Stack } from 'expo-router'
+
+if(__DEV__) reactotron.connect()
 
 
 export default function Root() {
   return (
     <Provider>
-      <QueryClientProvider>
+      <QueryProvider>
         <Stack screenOptions={{ headerShown: false }} />
-      </QueryClientProvider>
+      </QueryProvider>
     </Provider>
   )
 }

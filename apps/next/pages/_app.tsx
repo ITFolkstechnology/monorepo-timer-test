@@ -1,8 +1,7 @@
 import 'raf/polyfill'
 import 'setimmediate'
 
-import { Provider } from 'app/provider'
-import QueryClientProvider from 'app/provider/query-client-provider'
+import { Provider, QueryProvider } from 'app/provider'
 import Head from 'next/head'
 
 import { AppProps } from 'next/app'
@@ -20,9 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider>
-        <QueryClientProvider>
+        <QueryProvider>
           <Component {...pageProps} />
-        </QueryClientProvider>
+        </QueryProvider>
       </Provider>
     </>
   )
