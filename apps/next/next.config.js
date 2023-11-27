@@ -17,7 +17,27 @@ const nextConfig = {
     'react-native-reanimated',
     'nativewind',
     'react-native-gesture-handler',
+    '@expo/vector-icons',
+    '@react-native/assets-registry',
+    'expo-font',
+    'expo-modules-core',
+    'expo-asset'
   ],
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.(ttf)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'static/fonts/',
+          publicPath: '_next/static/fonts/',
+        },
+      },
+    });
+
+    return config;
+  },
 }
 
 module.exports = withExpo(nextConfig)
