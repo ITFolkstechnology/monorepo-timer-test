@@ -19,7 +19,6 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({ value }) => {
 }
   return (
       <Text className='text-6xl'>{toHoursAndMinutes(value).h}:{toHoursAndMinutes(value).m}:{toHoursAndMinutes(value).s}</Text>
-
   )
 }
 
