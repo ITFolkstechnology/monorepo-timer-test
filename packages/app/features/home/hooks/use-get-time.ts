@@ -9,8 +9,7 @@ export const useFetchTime = () => {
     queryKey: [TIMER_PATH],
   };
   
-  const { data, status, failureReason, error  } = useQuery(timeFetch);
-  console.log({ failureReason })
+  const { data, status } = useQuery(timeFetch);
 
 return { data, status}
 }
