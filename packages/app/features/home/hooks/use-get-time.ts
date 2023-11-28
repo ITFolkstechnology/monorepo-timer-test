@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { TIMER_PATH, getTime } from "../actions";
+import { TIMER_PATH, fetchTime } from "../actions";
 
 
 
-export const useGetTime = () => {
+export const useFetchTime = () => {
   const timeFetch = {
-    queryFn: () => getTime(),
+    queryFn: () => fetchTime(),
     queryKey: [TIMER_PATH],
   };
   
-  const { data, status, failureReason } = useQuery(timeFetch);
+  const { data, status, failureReason, error  } = useQuery(timeFetch);
+  console.log({ failureReason })
 
 return { data, status}
 }

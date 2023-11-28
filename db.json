@@ -1,9 +1,9 @@
 {
   "timer": [
     {
-      "value": 500,
+      "value": 125,
       "id": 1,
-      "updatedAt": 1801106193933
+      "updatedAt": 1701193503146
     }
   ]
 }

@@ -5,12 +5,12 @@ import { Platform } from 'react-native';
 import CommandButton from './components/command-button';
 import SyncButton, { SyncValue } from './components/sync-button';
 import TimerDisplay from './components/timer-display';
-import { useGetTime } from './hooks/use-get-time';
+import { useFetchTime } from './hooks/use-get-time';
 import { useUpdateTime } from './hooks/use-update-time';
 
 
 export function HomeScreen() {
-  const { data, status } = useGetTime()
+  const { data, status } = useFetchTime()
   const { mutate, isPending } = useUpdateTime()
   
   const [syncState, setSyncState] = React.useState<SyncValue>('ready')
@@ -96,14 +96,25 @@ export function HomeScreen() {
 
   const baseContainerStyle = Platform.select({
     web: 'items-center justify-between',
-    native: 'items-center justify-center'
+    native: 'items-center justify-between'
   })
 
+  const syncButtonStyle = Platform.select({
+    web: 'w-6 self-end',
+    native: 'self-end w-full'
+  })
+
+  const commandPanelStyle = Platform.select({
+    web: 'gap-10',
+    native: 'w-full justify-between px-4'
+  })
+
+
   return (
-    <View className={`flex-1 p-3 w-full h-full max-w-lg ${baseContainerStyle}`}>
-      <SyncButton value={syncState} onClick={() => handleSyncTime()} className='w-6 self-end' />
+    <View className={`flex-1 p-3 w-full h-full ${baseContainerStyle}`}>
+      <SyncButton value={syncState} onClick={() => handleSyncTime()} className={syncButtonStyle} />
       <TimerDisplay value={time} />
-      <Row className='gap-6'>
+      <Row className={commandPanelStyle}>
         <CommandButton type='refresh' className='w-8' onClick={handleTimer} />
         <Row>
             <CommandButton type='backward' className='w-12' onClick={handleTimer} />
