@@ -1,7 +1,8 @@
-import { ArrowPathIcon, BackwardIcon, ForwardIcon, PauseCircleIcon, PlayCircleIcon, StopCircleIcon } from '@heroicons/react/24/outline'
 import { CustomButton } from 'app/design/custom-button'
 import { View } from 'app/design/view'
 import React from 'react'
+import { Platform } from 'react-native'
+import { commandIconsImport } from '../helpers/icons-imports'
 
 export type CommandType = 'start' | 'pause' | 'forward' | 'backward' | 'reset' | 'refresh'
 export type ButtonType = 'play/pause' | 'forward' | 'backward' | 'reset' | 'refresh'
@@ -12,19 +13,27 @@ export interface CommandButtonProps {
   onClick: (command: CommandType) => void
   className?: string
 }
+
+const Icons = commandIconsImport()
+
+ const commandButtonsStyle = Platform.select({
+    web: 'h-full w-full',
+    native: 'self-center w-full'
+  })
+
 const CommandButton: React.FC<CommandButtonProps> = ({ type, onClick, isPaused, className }) => {
   const Icon = () => {
     switch (type) {
       case 'play/pause':
-        return isPaused ? <PlayCircleIcon className='h-full w-full' /> : <PauseCircleIcon className='h-full w-full' />
+        return isPaused ? <Icons.PlayCircleIcon size={60} color='black' className={commandButtonsStyle}/> : <Icons.PauseCircleIcon size={60} color='black'className={commandButtonsStyle}/>
       case 'forward':
-        return <ForwardIcon className='h-full w-full' />
+        return <Icons.ForwardIcon size={48} color='black' className={commandButtonsStyle}/>
       case 'backward':
-        return <BackwardIcon className='h-full w-full' />
+        return <Icons.BackwardIcon size={48} color='black' className={commandButtonsStyle}/>
       case 'reset':
-        return <StopCircleIcon className='h-full w-full' />
+        return <Icons.StopCircleIcon size={38} color='black' className={commandButtonsStyle}/>
       case 'refresh':
-        return <ArrowPathIcon className='h-full w-full' />
+        return <Icons.ArrowPathIcon size={34} color='black' className={commandButtonsStyle}/>
       default:
         return
     }

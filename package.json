@@ -32,6 +32,9 @@
     "@heroicons/react": "^2.0.18",
     "@tanstack/react-query": "^5.8.7",
     "axios": "^1.6.2",
-    "expo-dev-client": "~2.4.12"
+    "expo-dev-client": "~2.4.12",
+    "react-device-detect": "^2.2.3",
+    "react-native-heroicons": "^3.2.0",
+    "react-native-svg": "^14.0.0"
   }
 }
