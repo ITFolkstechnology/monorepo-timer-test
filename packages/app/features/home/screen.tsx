@@ -16,13 +16,14 @@ export function HomeScreen() {
   const [syncState, setSyncState] = React.useState<SyncValue>('ready')
   const [time, setTime] = React.useState(0);
   const [isPaused, setIsPaused] = React.useState(true)
+  const [recentData, setRecentData] = React.useState<number>(Number.NEGATIVE_INFINITY)
+  const now = new Date().getTime()
 
   React.useEffect(() => {
     // Watch timer starts and pauses
     let intervalId;
-    const now = new Date().getTime()
-    const lastUpdate = data?.updatedAt || now
-    const hasNewData = lastUpdate < now ? true : false
+    const lastUpdate = data?.updatedAt || Number.NEGATIVE_INFINITY
+    const hasNewData = lastUpdate < recentData ? true : false
     if (!isPaused) {
       intervalId = setInterval(() => setTime(time + 1), 10);
     } 
@@ -36,8 +37,8 @@ export function HomeScreen() {
     // Watch data updates
     if (status === 'success') {
       const now = new Date().getTime()
-      const lastUpdate = data?.updatedAt || now
-      const hasNewData = lastUpdate > now ? true : false
+      const lastUpdate = data?.updatedAt || Number.NEGATIVE_INFINITY
+      const hasNewData = lastUpdate > recentData ? true : false
       if (hasNewData) {
         setSyncState('get')
       }
@@ -47,11 +48,13 @@ export function HomeScreen() {
   const sendNewData = () => {
     mutate(time)
     setSyncState('ready')
+    setRecentData(now)
   }
 
     const getNewData = () => {
     setTime(data?.value || 0)
     setSyncState('ready')
+    setRecentData(data?.updatedAt || now)
   }
 
   const handleSyncTime = () => {
@@ -73,6 +76,7 @@ export function HomeScreen() {
         break
       case 'pause':
         setIsPaused(true)
+        setRecentData(now)
         break
       case 'forward':
         setTime(time + 30)
