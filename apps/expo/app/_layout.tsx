@@ -1,10 +1,13 @@
-import { Provider } from 'app/provider'
+import { Provider, QueryProvider } from 'app/provider'
 import { Stack } from 'expo-router'
+
 
 export default function Root() {
   return (
     <Provider>
-      <Stack />
+      <QueryProvider>
+        <Stack screenOptions={{ headerShown: false }} />
+      </QueryProvider>
     </Provider>
   )
 }
