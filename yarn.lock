@@ -3099,6 +3099,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.12.1":
+  version: 5.12.1
+  resolution: "@tanstack/query-core@npm:5.12.1"
+  checksum: dde1707981861b672bfeb481ef6f9142b838afeae90f83999bc98ed0b06c80e9468c7bd7574f5980aebd7baea3f2b95f4899d49aaf9af2d0324d499823215f1d
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.12.2":
+  version: 5.12.2
+  resolution: "@tanstack/react-query@npm:5.12.2"
+  dependencies:
+    "@tanstack/query-core": 5.12.1
+  peerDependencies:
+    react: ^18.0.0
+  checksum: b492b6c470356f8e6b4d6eda626e42432e54465843f7485ed5c4d8399d98239f0bb9885f4a7fbb71f61cfd3d38f7f059cd7a387bb96a1a289a00bca8bd3f85b5
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -3581,6 +3599,7 @@ __metadata:
   resolution: "app@workspace:packages/app"
   dependencies:
     "@nandorojo/heroicons": ^0.0.5
+    "@tanstack/react-query": ^5.12.2
     axios: ^1.6.2
     moti: latest
     nativewind: 2.0.11
