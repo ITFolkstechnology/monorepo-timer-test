@@ -14,7 +14,7 @@ export interface IconButtonProps {
 export const IconButton: React.FC<IconButtonProps> = ({icon, size = "40", variant = "outline", onPress = () => null}) => {
   const buttonProps = Platform.select({
     web: { onClick: onPress },
-    default: { onPress },
+    default: { onPress: () => onPress() },
   })
   const ButtonComponent = Platform.OS === "web" ? "button" : Pressable
 
