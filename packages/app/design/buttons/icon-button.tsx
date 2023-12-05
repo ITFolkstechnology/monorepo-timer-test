@@ -2,7 +2,7 @@ import { classNameBuilder } from 'app/features/core/helpers/class-name-builder';
 import React from 'react';
 import { Platform, Pressable } from 'react-native';
 
-type SizeType = "40"
+type SizeType = "40" | "80"
 type VariantType = "outline" | "ghost"
 
 export interface IconButtonProps {
@@ -28,7 +28,8 @@ export const IconButton: React.FC<IconButtonProps> = ({icon, size = "40", varian
 export default IconButton;
 
 const sizeMap: Record<SizeType, string> = {
-  "40": "h-10 w-10"
+  "40": "h-10 w-10",
+  "80": "h-20 w-20"
 }
 
 const variantMap: Record<VariantType, string> = {
