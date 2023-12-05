@@ -35,5 +35,5 @@ export const useStopwatch = () => {
     setCurrentTime(newValue < 0 ? 0 : newValue)
   }
 
-  return { currentTime, play, pause, reset, restart, forward, rewind }
+  return { currentTime, isRunning, play, pause, reset, restart, forward, rewind }
 }
