@@ -1,25 +1,30 @@
 import { classNameBuilder } from 'app/features/core/helpers/class-name-builder';
+import { styled } from 'nativewind';
 import React from 'react';
 import { Platform, Pressable } from 'react-native';
 
 type SizeType = "40" | "80"
 type VariantType = "outline" | "ghost"
 
+const StyledPressable = styled(Pressable)
+
 export interface IconButtonProps {
   icon: JSX.Element
   size?: SizeType
   variant?: VariantType
   onPress?: () => void
+  className?: string
+  style?: any
 };
-export const IconButton: React.FC<IconButtonProps> = ({icon, size = "40", variant = "outline", onPress = () => null}) => {
+export const IconButton: React.FC<IconButtonProps> = ({icon, size = "40", variant = "outline", onPress = () => null, style, className}) => {
   const buttonProps = Platform.select({
-    web: { onClick: onPress },
+    web: { onClick: () => onPress() },
     default: { onPress: () => onPress() },
   })
-  const ButtonComponent = Platform.OS === "web" ? "button" : Pressable
+  const ButtonComponent = Platform.OS === "web" ? "button" : StyledPressable
 
   return (
-    <ButtonComponent className={classNameBuilder('flex rounded-full items-center justify-center', sizeMap[size], variantMap[variant])} {...buttonProps}>
+    <ButtonComponent className={classNameBuilder('flex rounded-full items-center justify-center', sizeMap[size], variantMap[variant], className)} style={style} {...buttonProps}>
       {icon}
     </ButtonComponent>
   )
@@ -33,6 +38,6 @@ const sizeMap: Record<SizeType, string> = {
 }
 
 const variantMap: Record<VariantType, string> = {
-  ghost: "",
-  outline: "hover:bg-black/20 active:bg-black/30 border border-black"
+  ghost: "hover:bg-black/10 active:bg-black/20",
+  outline: "hover:bg-black/10 active:bg-black/20 border border-black"
 }
