@@ -1,1 +1,1 @@
-export type TimerDataType = { time: number, updatedAt: Date }
+export type TimerDataType = { time: number, updatedAt: string }
