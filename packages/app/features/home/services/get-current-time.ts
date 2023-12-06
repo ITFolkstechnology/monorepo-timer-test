@@ -1,7 +1,8 @@
 import { api } from "app/features/core/api"
+import { TimerDataType } from "../types"
 
 type ParamsType = {}
-type ResponseType = { time: number }
+type ResponseType = TimerDataType
 type ServiceType = (params: ParamsType) => Promise<ResponseType>
 
 export const getCurrentTime: ServiceType = async () => {

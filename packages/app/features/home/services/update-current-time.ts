@@ -1,6 +1,7 @@
 import { api } from "app/features/core/api"
+import { TimerDataType } from "../types"
 
-type ParamsType = {time: number, updatedAt: Date}
+type ParamsType = TimerDataType
 type ResponseType = void
 type ServiceType = (params: ParamsType) => Promise<ResponseType>
 
