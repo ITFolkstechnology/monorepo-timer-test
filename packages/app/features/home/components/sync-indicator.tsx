@@ -24,6 +24,7 @@ export const SyncIndicator: React.FC<SyncIndicatorProps> = ({
       icon={<Icon color="black" />}
       variant="ghost"
       onPress={onPress}
+      disabled={!(status === 'receive' || status === 'send')}
     />
   )
 }
