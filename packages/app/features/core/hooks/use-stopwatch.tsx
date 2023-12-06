@@ -2,10 +2,25 @@ import React from "react";
 
 const REFRESH_RATE = 100
 
-export const useStopwatch = () => {
-  const [currentTime, setCurrentTime] = React.useState(0);
+type UseStopwatchType = (params?: { initialValue?: number }) => {
+  currentTime: number,
+  isRunning: boolean,
+  play: () => void,
+  pause: () => void,
+  reset: () => void,
+  restart: () => void,
+  forward: (ms?: number) => void,
+  rewind: (ms?: number) => void 
+}
+
+export const useStopwatch: UseStopwatchType = (params) => {
+  const initialValue = params?.initialValue || 0
+  const [currentTime, setCurrentTime] = React.useState(initialValue);
   const [isRunning, setIsRunning] = React.useState(false);
 
+  React.useEffect(() => {
+    setCurrentTime(initialValue)
+  }, [initialValue])
   React.useEffect(() => {
     if (!isRunning) return;
     const timeout = setInterval(() => {
@@ -21,15 +36,9 @@ export const useStopwatch = () => {
     setIsRunning(false)
     setCurrentTime(0)
   }
-  /**
-   * @param amount - time amount in milliseconds
-   */
   const forward = (amount = 30000) => {
     setCurrentTime(currentTime + amount)
   }
-  /**
-   * @param amount - time amount in milliseconds
-   */
   const rewind = (amount = 30000) => {
     const newValue = currentTime - amount
     setCurrentTime(newValue < 0 ? 0 : newValue)
