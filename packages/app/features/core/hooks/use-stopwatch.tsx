@@ -5,6 +5,7 @@ const REFRESH_RATE = 100
 type UseStopwatchType = (params?: { initialValue?: number }) => {
   currentTime: number,
   isRunning: boolean,
+  setCurrentTime: (value: number) => void,
   play: () => void,
   pause: () => void,
   reset: () => void,
@@ -44,5 +45,5 @@ export const useStopwatch: UseStopwatchType = (params) => {
     setCurrentTime(newValue < 0 ? 0 : newValue)
   }
 
-  return { currentTime, isRunning, play, pause, reset, restart, forward, rewind }
+  return { currentTime, setCurrentTime, isRunning, play, pause, reset, restart, forward, rewind }
 }
