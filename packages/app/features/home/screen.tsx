@@ -71,17 +71,15 @@ export function HomeScreen() {
       mutate({ time: currentTime, updatedAt })
       setSyncedDate(updatedAt)
     }
-    if (syncState === "error") {
+    if (syncState === 'error') {
       refetch()
-      setSyncState("pending")
+      setSyncState('pending')
     }
   }
 
   return (
-    <View className="flex-1 items-center justify-center p-8">
-      <View>
-        <SyncIndicator status={syncState} onPress={handleSync} />
-      </View>
+    <View className="flex-1 items-center justify-center p-8 pt-12">
+      <SyncIndicator status={syncState} onPress={handleSync} />
       <View className="flex-grow flex items-center justify-center">
         <TimerDisplay timeInMilliseconds={currentTime} />
       </View>
