@@ -115,7 +115,6 @@ type GetSyncStateType = (params: {
   remoteDate?: Date
 }) => SyncStatusType
 const getSyncState: GetSyncStateType = ({ localDate, remoteDate }) => {
-  console.log(localDate, remoteDate)
   if (!remoteDate || (localDate && isAfter(localDate, remoteDate)))
     return 'send'
   if (!localDate || isBefore(localDate, remoteDate)) return 'receive'
