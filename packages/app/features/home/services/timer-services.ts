@@ -10,7 +10,8 @@ export const getCurrentTime: GetCurrentTimeType = async () => {
     const { data } = await api.get<TimerDataType>('currentTime')
     return data
   } catch (error) {
-    throw console.log(error)
+    console.log(error)
+    throw error
   }
 }
 export const useGetCurrentTime = () =>
@@ -24,7 +25,8 @@ export const updateCurrentTime: UpdateCurrentTimeType = async (params) => {
   try {
     await api.put<ResponseType>('currentTime', params)
   } catch (error) {
-    throw console.log(error)
+    console.log(error)
+    throw error
   }
 }
 export const useUpdateCurrentTime = () => {

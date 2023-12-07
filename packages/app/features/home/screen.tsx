@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query'
 import { IconButton } from 'app/design/buttons'
 import {
   ArrowPathIcon,
@@ -9,6 +8,8 @@ import {
   StopIcon,
 } from 'app/design/icons'
 import { View } from 'app/design/view'
+import { formatISO } from 'date-fns'
+import React from 'react'
 import { useStopwatch } from '../core/hooks/use-stopwatch'
 import SyncIndicator, { SyncStatusType } from './components/sync-indicator'
 import TimerDisplay from './components/timer-display'
@@ -17,12 +18,9 @@ import {
   useUpdateCurrentTime,
 } from './services/timer-services'
 import { TimerDataType } from './types'
-import React from 'react'
-import { formatISO } from 'date-fns'
 
 export function HomeScreen() {
-  const queryClient = useQueryClient()
-  const { data: remoteData, isRefetching, refetch } = useGetCurrentTime()
+  const { data: remoteData, isRefetching, refetch, error } = useGetCurrentTime()
   const { mutate } = useUpdateCurrentTime()
   const {
     currentTime,
@@ -40,10 +38,14 @@ export function HomeScreen() {
   const PlayPauseIcon = isRunning ? PauseIcon : PlayIcon
 
   React.useEffect(() => {
+    if (error) {
+      setSyncState('error')
+      return
+    }
     if (!remoteData) return
     const localData = { time: currentTime, updatedAt: syncedDate }
     setSyncState(getSyncState({ localData, remoteData }))
-  }, [syncedDate, isRefetching, remoteData])
+  }, [syncedDate, isRefetching, remoteData, error])
 
   const handlePlayPause = () => {
     if (isRunning) {
@@ -68,6 +70,10 @@ export function HomeScreen() {
       const updatedAt = formatISO(new Date())
       mutate({ time: currentTime, updatedAt })
       setSyncedDate(updatedAt)
+    }
+    if (syncState === "error") {
+      refetch()
+      setSyncState("pending")
     }
   }
 
