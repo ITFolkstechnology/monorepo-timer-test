@@ -17,6 +17,8 @@ const nextConfig = {
     'react-native-reanimated',
     'nativewind',
     'react-native-gesture-handler',
+    'react-native-svg',
+    '@nandorojo/heroicons',
   ],
 }
 

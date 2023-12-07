@@ -72,6 +72,9 @@ web-build/
 .turbo
 build/**
 
+# Fake API
+db.json
+
 
 .pnp.*
 .yarn/*
