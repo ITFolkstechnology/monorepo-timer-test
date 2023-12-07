@@ -5,5 +5,8 @@ module.exports = {
       rootDir: 'apps/next/',
     },
   },
+  rules: {
+    'react-hooks/exhaustive-deps': 'off',
+  },
   root: true,
 }
