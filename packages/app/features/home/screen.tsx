@@ -59,11 +59,11 @@ export function HomeScreen() {
   }
   const handleReset = () => {
     reset()
+    refetch()
     setLastSyncDate(null)
   }
   const handleRestart = () => {
     restart()
-    refetch()
   }
   const handleSync = () => {
     if (syncState === 'receive' && typeof remoteData?.time === 'number') {
