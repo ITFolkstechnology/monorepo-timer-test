@@ -8,7 +8,7 @@ import {
   StopIcon,
 } from 'app/design/icons'
 import { View } from 'app/design/view'
-import { formatISO } from 'date-fns'
+import { isAfter, isBefore, isEqual } from 'date-fns'
 import React from 'react'
 import { useStopwatch } from '../core/hooks/use-stopwatch'
 import SyncIndicator, { SyncStatusType } from './components/sync-indicator'
@@ -17,7 +17,6 @@ import {
   useGetCurrentTime,
   useUpdateCurrentTime,
 } from './services/timer-services'
-import { TimerDataType } from './types'
 
 export function HomeScreen() {
   const { data: remoteData, isRefetching, refetch, error } = useGetCurrentTime()
@@ -34,7 +33,7 @@ export function HomeScreen() {
     reset,
   } = useStopwatch()
   const [syncState, setSyncState] = React.useState<SyncStatusType>('pending')
-  const [syncedDate, setSyncedDate] = React.useState<string>('')
+  const [lastSyncDate, setLastSyncDate] = React.useState<Date | null>(null)
   const PlayPauseIcon = isRunning ? PauseIcon : PlayIcon
 
   React.useEffect(() => {
@@ -43,19 +42,24 @@ export function HomeScreen() {
       return
     }
     if (!remoteData) return
-    const localData = { time: currentTime, updatedAt: syncedDate }
-    setSyncState(getSyncState({ localData, remoteData }))
-  }, [syncedDate, isRefetching, remoteData, error])
+    setSyncState(
+      getSyncState({
+        localDate: lastSyncDate,
+        remoteDate: remoteData.updatedAt,
+      })
+    )
+  }, [lastSyncDate, isRefetching, remoteData, error])
 
   const handlePlayPause = () => {
     if (isRunning) {
       pause()
       refetch()
+      setLastSyncDate(new Date())
     } else play()
   }
   const handleReset = () => {
     reset()
-    setSyncedDate('')
+    setLastSyncDate(null)
   }
   const handleRestart = () => {
     restart()
@@ -64,12 +68,12 @@ export function HomeScreen() {
   const handleSync = () => {
     if (syncState === 'receive' && typeof remoteData?.time === 'number') {
       setCurrentTime(remoteData.time)
-      setSyncedDate(remoteData.updatedAt)
+      if (remoteData.updatedAt) setLastSyncDate(remoteData.updatedAt)
     }
     if (syncState === 'send') {
-      const updatedAt = formatISO(new Date())
+      const updatedAt = new Date()
       mutate({ time: currentTime, updatedAt })
-      setSyncedDate(updatedAt)
+      setLastSyncDate(updatedAt)
     }
     if (syncState === 'error') {
       refetch()
@@ -107,15 +111,14 @@ export function HomeScreen() {
 }
 
 type GetSyncStateType = (params: {
-  localData?: TimerDataType
-  remoteData?: TimerDataType
+  localDate?: Date | null
+  remoteDate?: Date
 }) => SyncStatusType
-const getSyncState: GetSyncStateType = ({ localData, remoteData }) => {
-  if (localData && remoteData) {
-    if (localData.updatedAt !== remoteData.updatedAt && localData.time === 0)
-      return 'receive'
-    if (localData.time !== remoteData.time) return 'send'
-    return 'synced'
-  }
+const getSyncState: GetSyncStateType = ({ localDate, remoteDate }) => {
+  console.log(localDate, remoteDate)
+  if (!remoteDate || (localDate && isAfter(localDate, remoteDate)))
+    return 'send'
+  if (!localDate || isBefore(localDate, remoteDate)) return 'receive'
+  if (isEqual(localDate, remoteDate)) return 'synced'
   return 'error'
 }

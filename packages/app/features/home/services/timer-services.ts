@@ -8,7 +8,7 @@ type GetCurrentTimeType = () => Promise<TimerDataType>
 export const getCurrentTime: GetCurrentTimeType = async () => {
   try {
     const { data } = await api.get<TimerDataType>('currentTime')
-    return data
+    return { ...data, updatedAt: new Date(data.updatedAt || '') }
   } catch (error) {
     console.log(error)
     throw error
